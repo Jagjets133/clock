@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #0b456b, #021c37)
+}
+
+.clock {
+    height: 500px;
+    width: 500px;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #05263c, #000d1a);
+}
+
+.clock::before {
+    content: "";
+    height: 525px;
+    width: 525px;
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(to right, #00d9ff, #ee00ff);
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+.number {
+    transform: rotate(calc(30deg * var(--n)));
+    position: absolute;
+    text-align: center;
+    inset: 20px;
+    font-size: 40px;
+    color: #00d9ff;
+    text-shadow: 0 0 12px ;
+}
+
+.number b {
+    transform: rotate(calc(-30deg * var(--n)));
+    display: inline-block;
+}
+
+.dot {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background-color: #ee00ff;
+    border: 6px solid #00d9ff;
+    border-radius: 50%;
+}
+
+.hour-hand, .min-hand, .sec-hand {
+    --rotate: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;;
+    transform: translate(-50%) rotate(calc(var(--rotate) * 1deg));
+    transform-origin: bottom;
+    border-radius: 30px 30px 0 0;
+}
+
+.hour-hand {
+    height: 130px;
+    width: 12px;
+    background: linear-gradient(#00d9ff, #ee00ff);
+    animation: HourAnimation 21600s steps(60) 0s infinite normal;
+}
+
+.min-hand {
+    height: 190px;
+    width: 12px;
+    background: linear-gradient(to top, #00d9ff, #ee00ff);
+    animation: Animation 3600s steps(60) 0s infinite normal;
+}
+
+.sec-hand {
+    height: 210px;
+    width: 6px;
+    background: linear-gradient(to top, #00d9ff, #ee00ff);
+    animation: Animation 60s steps(60) 0s infinite normal;
+}
+
+
+/**Animtion**/
+
+@keyframes Animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes HourAnimation {
+    from {
+        transform: rotate(150deg);
+    }
+    to {
+        transform: rotate(149deg);
+    }
+}
